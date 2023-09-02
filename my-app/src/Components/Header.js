@@ -4,7 +4,7 @@ import { Button, Modal } from "react-bootstrap";
 function ShowLogin() {
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false)
+    const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     return(
@@ -21,7 +21,7 @@ function ShowLogin() {
                     <Button variant="secondary" onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>Sign In</Button>
+                    <Button variant="primary" onClick={handleClose}>Submit</Button>
                 </Modal.Footer>
             </Modal>
         </>
