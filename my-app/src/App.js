@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect,useState} from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://hemansings.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          I SAID HEY WHATS GOING ON
-        </a>
-      </header>
-    </div>
-  );
+function App()
+{
+    const [backEndData,setBackendData] = useState([{}])
+
+    useEffect(() =>{
+        fetch("http://157.245.213.41:5000/api").then(
+            response => response.json()
+        ).then(
+            data => {
+                setBackendData(data)
+            }
+        )
+    },[])
+  return(
+      <div>
+          {(typeof backEndData.users === 'undefined') ? (
+              <p>Loading...</p>
+          ):(
+              backEndData.users.map((user,i) =>(
+                  <p key={{i}}>{user}</p>
+              ))
+          )}
+      </div>
+  )
 }
 
-export default App;
+export default App
