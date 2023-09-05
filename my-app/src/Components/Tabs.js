@@ -3,6 +3,8 @@ import "../App.css";
 
 // YT Tutorial - https://www.youtube.com/watch?v=WkREeDy2WQ4
 
+// listen for shit on port 5000
+
 function Tabs() {
 
     const [toggleState, setToggleState] = useState(1);
@@ -26,19 +28,19 @@ function Tabs() {
                 <div className={ contentState === 1 ? "content active-content" : "content"}>
                     <h2>Home</h2>
                     <hr />
-                    <p>Some shit about Cheeseburgers... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>All borgers come with Hepatitis C</p>
                 </div>
 
                 <div className={ contentState === 2 ? "content active-content" : "content"}>
                     <h2>Menu</h2>
                     <hr />
-                    <p>Menu coming soon...</p>
+                    <p>gtfo</p>
                 </div>
 
                 <div className={ contentState === 3 ? "content active-content" : "content"}>
                     <h2>Orders</h2>
                     <hr />
-                    <p>order list and tracking coming soon</p>
+                    <p>Your borger caught on fire</p>
                 </div>
 
 
