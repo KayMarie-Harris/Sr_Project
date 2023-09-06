@@ -10,7 +10,7 @@ function App() {
         <Header />
         <ShowLogin />
       </div>
-      <div className="Content">
+      <div className="page-content">
         <Tabs />
       </div>
     </div>
