@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  overflow: hidden;
 }
 
 .App-logo {
@@ -18,8 +19,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -100,4 +101,27 @@
 
 .active-content {
   display: block;
+}
+
+.header {
+  display: flex;
+  width: calc(100% - 10px);
+  margin: auto;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* border-style: dashed; */
+}
+.header button {
+  margin-left: 75%;
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+}
+
+input {
+  border-color: rgb(228, 133, 0);
+  border-style: solid;
+  display: block;
+  margin-top: 5px;
 }
