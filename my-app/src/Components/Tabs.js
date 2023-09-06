@@ -19,9 +19,9 @@ function Tabs() {
         <div className="container">
 
             <div className="bloc-tabs">
-                <button className={ toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(1)}>Home</button>
-                <button className={ toggleState === 2 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(2)}>Menu</button>
-                <button className={ toggleState === 3 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(3)}>Orders</button> {/* Should only display if login === true (Not yet implemented) */}
+                <button className={ toggleState === 1 ? "active-tabs" : "tabs"} onClick={() => toggleTab(1)}>Home</button>
+                <button className={ toggleState === 2 ? "active-tabs" : "tabs"} onClick={() => toggleTab(2)}>Menu</button>
+                <button className={ toggleState === 3 ? "active-tabs" : "tabs"} onClick={() => toggleTab(3)}>Orders</button> {/* Should only display if login === true (Not yet implemented) */}
             </div>
 
             <div className="content-tabs">
