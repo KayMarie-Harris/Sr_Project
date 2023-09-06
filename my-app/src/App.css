@@ -40,14 +40,17 @@
 
 .header {
   display: flex;
-  width: 99.5%;
-  height: 10%;
-  border-style: dotted;
+  width: calc(100% - 10px);
+  margin: auto;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* border-style: dashed; */
 }
 .header button {
   margin-left: 75%;
-  height: 75px;
-  width: 75px;
+  height: 60px;
+  width: 60px;
   border-radius: 100%;
 }
 
