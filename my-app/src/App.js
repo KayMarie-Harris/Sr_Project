@@ -1,29 +1,20 @@
-import React, {useEffect,useState} from 'react'
+import './App.css';
+import Header from './Components/Header';
+import ShowLogin from './Components/LoginRegister';
+import Tabs from './Components/Tabs';
 
-function App()
-{
-    const [backEndData,setBackendData] = useState([{}])
-
-    useEffect(() =>{
-        fetch("http://157.245.213.41:5000/api").then(
-            response => response.json()
-        ).then(
-            data => {
-                setBackendData(data)
-            }
-        )
-    },[])
-  return(
-      <div>
-          {(typeof backEndData.users === 'undefined') ? (
-              <p>Loading...</p>
-          ):(
-              backEndData.users.map((user,i) =>(
-                  <p key={{i}}>{user}</p>
-              ))
-          )}
+function App() {
+  return (
+    <div className="App">
+      <div className="header">
+        <Header />
+        <ShowLogin />
       </div>
-  )
+      <div className="page-content">
+        <Tabs />
+      </div>
+    </div>
+  );
 }
 
 export default App
