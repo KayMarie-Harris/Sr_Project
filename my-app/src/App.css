@@ -87,11 +87,12 @@
 
 .header {
   display: flex;
-  width: calc(100% - 10px);
+  width: 100%;
   margin: auto;
   justify-content: space-between;
   padding-top: 10px;
   padding-bottom: 10px;
+  background-color: #ffae00;
   /* border-style: dashed; */
 }
 
