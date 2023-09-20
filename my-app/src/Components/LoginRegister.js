@@ -66,6 +66,7 @@ function ShowPopUp() {
                         <Modal.Body>
                             <form>
                                 <input type="text" placeholder="Name"></input>
+                                <input type="text" placeholder="Address"></input>
                                 <input type="text" placeholder="Email"></input>
                                 <input type="text" placeholder="Phone Number"></input>
                                 <input type="password" placeholder="Password"></input>

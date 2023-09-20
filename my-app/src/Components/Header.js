@@ -1,7 +1,9 @@
+
+
 function Header() {
     return(
         <>
-            {/* Logo will go here */}
+            <img src="./Images/Burger.png" alt="happy borger" />
             <h1>I Love Cheeseburgers</h1>
         </>
     )
