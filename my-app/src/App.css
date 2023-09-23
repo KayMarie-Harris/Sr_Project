@@ -1,7 +1,11 @@
+html, body, #app, #app {
+  height: 100%
+}
+
 .App {
   overflow: hidden;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: rgb(215, 215, 215);
+  background-color: rgb(215, 217, 228);
   height: 100%;
 }
 
@@ -40,7 +44,6 @@
 .active-tabs {
   background: white;
   border-bottom: 1px solid transparent;
-  background-color: #b9f8de;
   color: #005fe4;
   font-weight: bold;
   width: 100px;
@@ -92,7 +95,8 @@
 
 .active-content {
   display: block;
-  background-color: #b9f8de;
+  width: 99vw;
+  height: 85vh;
 }
 
 .header {
@@ -104,7 +108,7 @@
   /* border-style: dashed; */
 }
 
-@media only screen and (max-width: 1470px) { 
+@media only screen and (max-width: 1490px) { 
   .header h1 { 
     display: none; 
   } 
