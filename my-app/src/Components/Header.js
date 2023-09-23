@@ -1,10 +1,14 @@
+import ShowPopUp from "./LoginRegister";
 
 
 function Header() {
     return(
         <>
-            <img src="./Images/Burger.png" alt="happy borger" />
+            <img className="logo" src='burger.png' alt="happy borger" />
             <h1>I Love Cheeseburgers</h1>
+            <ShowPopUp/>
+            <button className="bag-button"><img src="bag.png" alt="Bag"/></button>
+
         </>
     )
 }

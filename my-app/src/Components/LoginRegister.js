@@ -24,7 +24,7 @@ function ShowPopUp() {
 
     return(
         <>
-            <button variant="primary" onClick={handleShowLogin}>Sign In</button>
+            <button className="user-button" variant="primary" onClick={handleShowLogin}><img src="user.png"/>Sign In</button>
             <div className= {showLogin? "login-modal-show" : "login-modal-hide"}>
                 <Modal className="login-modal" show={showLogin} onHide={handleCloseLogin}>
                     <div className="header-login-modal">
