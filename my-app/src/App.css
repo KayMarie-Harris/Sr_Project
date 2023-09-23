@@ -87,23 +87,88 @@
 
 .header {
   display: flex;
-  width: calc(100% - 10px);
-  margin: auto;
-  justify-content: space-between;
+  width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
+  background-color: #ffae00;
   /* border-style: dashed; */
+}
+
+@media only screen and (max-width: 1470px) { 
+  .header h1 { 
+    display: none; 
+  } 
 }
 
 .header h1{
   font-size: 35px;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: white;
+  font-weight: bold;
+  margin-right: 50%;
 }
 
-.header button {
-  margin-left: 75%;
-  height: 60px;
+.user-button img{
   width: 60px;
+}
+
+.user-button{
+  width: 80px;
+  height: 80px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #ffae00;
+  border: none;
   border-radius: 100%;
+  text-align: justify;
+  display: block;
+  color: white;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.user-button:hover{
+  width: 80px;
+  height: 80px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  border: none;
+  border-radius: 100%;
+  text-align: justify;
+  display: block;
+  color: #b9f8de;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.bag-button img{
+  width: 65px;
+}
+.bag-button {
+  width: 80px;
+  height: 80px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #ffae00;
+  border: none;
+  border-radius: 100%;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.bag-button:hover {
+  width: 80px;
+  height: 80px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #b9f8de;
+  border: none;
+  border-radius: 100%;
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 input {
@@ -111,4 +176,10 @@ input {
   border-style: solid;
   display: block;
   margin-top: 5px;
+}
+
+.logo {
+  height: 80px;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
