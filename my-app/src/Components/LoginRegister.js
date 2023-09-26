@@ -1,14 +1,42 @@
 import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Login from "./bff/login";
 
 function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
+    const [login, setLogin] = useState();
+    const loginInfo = { email: 'beanmail', password: 'password' };
 
     const handleCloseLogin = () => {
         setShowLogin(false);
     }
+
+    const handleLogin = async () => {
+        try {
+            console.log("line 13")
+            const response = await fetch('http://157.245.213.41:5000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: loginInfo,
+            });
+
+            if (response.ok) {
+                console.log(response);
+                //setIsLoggedIn(true);
+            }
+            else {
+                //setIsLoggedIn(false);
+                console.log(response);
+            }
+        } catch (error) {
+            // error
+        }
+    };
+
     const handleShowLogin = () => {
         setShowLogin(true);
         setShowRegister(false);
@@ -48,7 +76,7 @@ function ShowPopUp() {
                         <button onClick={handleCloseLogin}>
                             Cancel
                         </button>
-                        <button onClick={handleCloseLogin}>Sign In</button>
+                        <button onClick={handleLogin}>Sign In</button>
                     </Modal.Footer>
                 </Modal>
             </div>
