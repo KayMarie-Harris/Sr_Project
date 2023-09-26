@@ -20,12 +20,12 @@ export const AuthProvider = ({ children }) => {
 
     const handleLogin = async () => {
       try {
-        const response = await fetch('http://157.245.213.41:5000/api_login', {
+        const response = await fetch('http://157.245.213.41:5000/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ username, password }),
+          body: JSON.stringify({ email, password }),
         });
 
         if (response.ok) {
