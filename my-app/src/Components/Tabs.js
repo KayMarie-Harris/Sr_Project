@@ -3,8 +3,6 @@ import "../App.css";
 
 // YT Tutorial - https://www.youtube.com/watch?v=WkREeDy2WQ4
 
-// listen for shit on port 5000
-
 function Tabs() {
 
     const [toggleState, setToggleState] = useState(1);

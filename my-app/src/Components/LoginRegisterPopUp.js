@@ -6,8 +6,9 @@ import Login from "./bff/login";
 function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
-    const [login, setLogin] = useState();
-    const loginInfo = { email: 'beanmail', password: 'password' };
+    const [login, setLogin] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('')
 
     const handleCloseLogin = () => {
         setShowLogin(false);
@@ -21,19 +22,19 @@ function ShowPopUp() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: loginInfo,
+                body: JSON.stringify({ email, password })
             });
 
             if (response.ok) {
-                console.log(response);
-                //setIsLoggedIn(true);
+                console.log("Login Successful!");
+                setLogin(true);
             }
             else {
-                //setIsLoggedIn(false);
-                console.log(response);
+                setLogin(false);
+                console.log("Login failed");
             }
         } catch (error) {
-            // error
+            console.log("Err during login:" );
         }
     };
 
@@ -65,8 +66,8 @@ function ShowPopUp() {
                     <div className="body-login-modal">
                         <Modal.Body>
                             <form>
-                                <input type="text" placeholder="Email"></input>
-                                <input type="password" placeholder="Password"></input>
+                                <input value={email} type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
+                                <input value={password} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
                             </form>
                         </Modal.Body>
                     </div>
