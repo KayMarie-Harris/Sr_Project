@@ -9,7 +9,7 @@ function App() {
         <Header />
       </div>
       <div className="page-content">
-        <Tabs />
+        <Tabs isLoggedIn={isLoggedIn} onLogin={handleLogin} /*toggleTab={}*//>
       </div>
     </div>
   );
