@@ -27,6 +27,7 @@ function ShowPopUp() {
 
             if (response.ok) {
                 console.log("Login Successful!");
+                handleCloseLogin();
                 setLogin(true);
             }
             else {
@@ -34,6 +35,7 @@ function ShowPopUp() {
                 console.log("Login failed");
             }
         } catch (error) {
+            handleCloseLogin();
             console.log("Err during login:" );
         }
     };
