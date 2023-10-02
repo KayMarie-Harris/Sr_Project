@@ -32,6 +32,7 @@ function ShowPopUp() {
                 setSuccessMsg(`Login Successful! Welcome`);
                 handleCloseLogin();
                 setLogin(true);
+                window.alert("Login Successful you sussy baka!"); // Display success message using window.alert
                 console.log(successMsg);
                 console.log(response)
             }
@@ -69,6 +70,8 @@ function ShowPopUp() {
 
             if (response.ok) {
                 setSuccessMsg(`User Registered! Welcome`);
+                console.log(successMsg)
+                window.alert("Registration Successful! tis Burger time");
             }
             else {
                 setLogin(false);
