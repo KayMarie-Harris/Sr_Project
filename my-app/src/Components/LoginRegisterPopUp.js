@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Banner from "./Banner";
-import ProfileInfo from "./bff/profile";
 
 function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
@@ -10,6 +9,7 @@ function ShowPopUp() {
     const [login, setLogin] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
     const [successMsg, setSuccessMsg] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [name, setName] = useState('');
@@ -58,7 +58,7 @@ function ShowPopUp() {
 
     const handleRegister = async () => {
         try {
-            console.log("line 13")
+            console.log("Try Register")
             const response = await fetch('http://157.245.213.41:5000/register', {
                 method: 'POST',
                 headers: {
@@ -133,12 +133,12 @@ function ShowPopUp() {
                     <div className="body-register-modal">
                         <Modal.Body>
                             <form>
-                                <input type="text" placeholder="Name"></input>
-                                <input type="text" placeholder="Address"></input>
-                                <input type="text" placeholder="Email"></input>
-                                <input type="text" placeholder="Phone Number"></input>
-                                <input type="password" placeholder="Password"></input>
-                                <input type="password" placeholder="Confirm Password"></input>
+                                <input value={name} type="text" placeholder="Name" onChange={(e) => setName(e.target.value)}></input>
+                                <input value={address} type="text" placeholder="Address" onChange={(e) => setAddress(e.target.value)}></input>
+                                <input value={email} type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
+                                <input value={phoneNumber} type="text" placeholder="Phone Number" onChange={(e) => setPhoneNumber(e.target.value)}></input>
+                                <input value={password} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
+                                <input value={confirmPassword} type="password" placeholder="Confirm Password" onChange={(e) => setConfirmPassword(e.target.value)}></input>
                             </form>
                         </Modal.Body>
                     </div>
