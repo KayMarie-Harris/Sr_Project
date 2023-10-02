@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Banner from "./Banner";
+import ProfileInfo from "./bff/profile";
 
 function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
@@ -11,15 +12,9 @@ function ShowPopUp() {
     const [password, setPassword] = useState('')
     const [successMsg, setSuccessMsg] = useState('');
     const [errMsg, setErrMsg] = useState('');
-
-    const handleCloseLogin = () => {
-        setShowLogin(false);
-    }
-
-    const handleSignOut = () => {
-        console.log("not implemented")
-        setLogin(false)
-    }
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('');
 
     const handleLogin = async () => {
         try {
@@ -33,12 +28,11 @@ function ShowPopUp() {
             });
 
             if (response.ok) {
-                setSuccessMsg(`Login Successful! Welcome, ${response.name}`);
+
+                setSuccessMsg(`Login Successful! Welcome`);
                 handleCloseLogin();
                 setLogin(true);
-                useEffect(() => {
-                    console.log(successMsg);
-                }, [successMsg]);
+                console.log(successMsg);
                 console.log(response)
             }
             else {
@@ -50,12 +44,41 @@ function ShowPopUp() {
             console.log("Err during login:", error);
         }
     };
-
+    const handleCloseLogin = () => {
+        setShowLogin(false);
+    }
     const handleShowLogin = () => {
         setShowLogin(true);
         setShowRegister(false);
     }
+    const handleSignOut = () => {
+        console.log("not implemented")
+        setLogin(false)
+    }
 
+    const handleRegister = async () => {
+        try {
+            console.log("line 13")
+            const response = await fetch('http://157.245.213.41:5000/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, address, email, phoneNumber, password }),
+            });
+
+            if (response.ok) {
+                setSuccessMsg(`User Registered! Welcome`);
+            }
+            else {
+                setLogin(false);
+                console.log("Registration failed");
+            }
+        } catch (error) {
+            handleCloseRegister();
+            console.log("Err during Registration:", error);
+        }
+    };
     const handleCloseRegister = () => {
         setShowRegister(false);
     }
@@ -125,7 +148,7 @@ function ShowPopUp() {
                         <button onClick={handleCloseRegister}>
                             Cancel
                         </button>
-                        <button onClick={handleCloseRegister}>Register</button>
+                        <button onClick={handleRegister}>Register</button>
                     </Modal.Footer>
                 </Modal>
             </div>
