@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Login from "./bff/login";
+import Banner from "./Banner";
 
 function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
@@ -9,9 +9,16 @@ function ShowPopUp() {
     const [login, setLogin] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
+    const [successMsg, setSuccessMsg] = useState('');
+    const [errMsg, setErrMsg] = useState('');
 
     const handleCloseLogin = () => {
         setShowLogin(false);
+    }
+
+    const handleSignOut = () => {
+        console.log("not implemented")
+        setLogin(false)
     }
 
     const handleLogin = async () => {
@@ -26,9 +33,13 @@ function ShowPopUp() {
             });
 
             if (response.ok) {
-                console.log("Login Successful!");
+                setSuccessMsg(`Login Successful! Welcome, ${response.name}`);
                 handleCloseLogin();
                 setLogin(true);
+                useEffect(() => {
+                    console.log(successMsg);
+                }, [successMsg]);
+                console.log(response)
             }
             else {
                 setLogin(false);
@@ -36,7 +47,7 @@ function ShowPopUp() {
             }
         } catch (error) {
             handleCloseLogin();
-            console.log("Err during login:" );
+            console.log("Err during login:", error);
         }
     };
 
@@ -55,7 +66,10 @@ function ShowPopUp() {
 
     return (
         <>
-            <button className="user-button" variant="primary" onClick={handleShowLogin}><img src="user.png" />Sign In</button>
+           {!login && <button className="user-button" variant="primary" onClick={handleShowLogin}><img src="user.png" />Sign In</button>}
+           { login && <button className="user-button" variant="primary" onClick={handleSignOut}><img src="user.png" />Sign Out</button> }
+           {successMsg && <Banner message={successMsg} type="success" />}
+           {errMsg && <Banner message={errMsg} type="error" />}
             <div className={showLogin ? "login-modal-show" : "login-modal-hide"}>
                 <Modal className="login-modal" show={showLogin} onHide={handleCloseLogin}>
                     <div className="header-login-modal">

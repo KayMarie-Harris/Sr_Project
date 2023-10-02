@@ -202,3 +202,29 @@ input {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+
+.banner-success {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  border-radius: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80vw;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.banner-err {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  border-radius: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80vw;
+  text-align: center;
+  margin-top: 5px;
+}
