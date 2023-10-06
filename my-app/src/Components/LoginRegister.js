@@ -15,7 +15,6 @@ function ShowPopUp() {
 
     const handleLogin = async () => {
         try {
-            console.log("line 13")
             const response = await fetch('http://157.245.213.41:5000/login', {
                 method: 'POST',
                 headers: {
