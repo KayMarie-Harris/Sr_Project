@@ -3,7 +3,7 @@ import "../App.css";
 
 // YT Tutorial - https://www.youtube.com/watch?v=WkREeDy2WQ4
 
-function Tabs() {
+function Tabs({ isLoggedIn, onLogin, onLogout }) {
 
     const [toggleState, setToggleState] = useState(1);
     const [contentState, setContentState] = useState(1);

@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Banner from "./Banner";
 
-function ShowPopUp() {
+function ShowPopUp({ isLoggedIn }) {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
     const [login, setLogin] = useState(false);
@@ -92,10 +92,10 @@ function ShowPopUp() {
 
     return (
         <>
-           {!login && <button className="user-button" variant="primary" onClick={handleShowLogin}><img src="user.png" />Sign In</button>}
-           { login && <button className="user-button" variant="primary" onClick={handleSignOut}><img src="user.png" />Sign Out</button> }
-           {successMsg && <Banner message={successMsg} type="success" />}
-           {errMsg && <Banner message={errMsg} type="error" />}
+            {!login && <button className="user-button" variant="primary" onClick={handleShowLogin}><img src="user.png" />Sign In</button>}
+            {login && <button className="user-button" variant="primary" onClick={handleSignOut}><img src="user.png" />Sign Out</button>}
+            {successMsg && <Banner message={successMsg} type="success" />}
+            {errMsg && <Banner message={errMsg} type="error" />}
             <div className={showLogin ? "login-modal-show" : "login-modal-hide"}>
                 <Modal className="login-modal" show={showLogin} onHide={handleCloseLogin}>
                     <div className="header-login-modal">
