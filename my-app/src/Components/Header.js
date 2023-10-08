@@ -1,4 +1,4 @@
-import ShowPopUp from "./LoginRegister";
+import ShowPopUp from "./LoginRegisterPopUp";
 
 
 function Header() {

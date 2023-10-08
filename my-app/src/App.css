@@ -127,11 +127,11 @@ body,
   margin-right: 50%;
 }
 
-.user-button img {
+.user-button-login img {
   width: 60px;
 }
 
-.user-button {
+.user-button-login {
   width: 80px;
   height: 80px;
   display: flex;
@@ -147,7 +147,7 @@ body,
   margin-left: auto;
 }
 
-.user-button:hover {
+.user-button-login:hover {
   width: 80px;
   height: 80px;
   display: flex;
@@ -159,6 +159,43 @@ body,
   display: block;
   color: #b9f8de;
   font-weight: bold;
+  margin-left: auto;
+}
+
+.user-button-logout img {
+  width: 60px;
+}
+
+.user-button-logout {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #ffae00;
+  border: none;
+  border-radius: 100%;
+  text-align: justify;
+  display: block;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  margin-left: auto;
+}
+
+.user-button-logout:hover {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  border: none;
+  border-radius: 100%;
+  text-align: justify;
+  display: block;
+  color: #b9f8de;
+  font-weight: bold;
+  font-size: 12px;
   margin-left: auto;
 }
 
@@ -201,4 +238,30 @@ input {
   height: 80px;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.banner-success {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  border-radius: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80vw;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.err {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+a {
+  color: #005fe4;
 }
