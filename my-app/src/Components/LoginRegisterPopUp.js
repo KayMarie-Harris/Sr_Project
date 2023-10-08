@@ -71,10 +71,15 @@ function ShowPopUp() {
     };
     const handleCloseLogin = () => {
         setShowLogin(false);
+        setEmail('');
+        setPassword('');
+        setErrMsg('');
+        setSuccessMsg('');
     }
     const handleShowLogin = () => {
         setShowLogin(true);
         setShowRegister(false);
+        setErrMsg('');
     }
     const handleLogout = async () => {
         try {
@@ -92,7 +97,7 @@ function ShowPopUp() {
                 setErrMsg('');
             }
             else {
-                console.log("error signing out")
+                console.log("error signing out");
             }
         } catch (error) {
             console.log("Err during logout:", error);
@@ -100,6 +105,10 @@ function ShowPopUp() {
     };
 
     const handleRegister = async () => {
+        if (confirmPassword != password) {
+            setErrMsg("Passwords do not match");
+            return;
+        }
         try {
             console.log("Try Register")
             const response = await fetch('http://157.245.213.41:5000/register', {
@@ -112,12 +121,19 @@ function ShowPopUp() {
 
             if (response.ok) {
                 setSuccessMsg(`User Registered! Welcome`);
+                setErrMsg('')
                 console.log(successMsg)
-                window.alert("Registration Successful! tis Burger time");
             }
             else {
                 setIsLoggedIn(false);
-                console.log("Registration failed");
+                if (userName === '' || address === '' || email === '' || phoneNumber === '' || password === '' || confirmPassword === '') {
+                    setErrMsg("All fields are required")
+                }
+                else {
+                    setErrMsg("Registration failed")
+                }
+                setSuccessMsg('')
+                console.log(errMsg);
             }
         } catch (error) {
             handleCloseRegister();
@@ -126,10 +142,11 @@ function ShowPopUp() {
     };
     const handleCloseRegister = () => {
         setShowRegister(false);
+        setErrMsg('');
     }
     const handleShowRegister = () => {
         setShowRegister(true);
-        setShowLogin(false);
+        handleCloseLogin();
     }
 
     return (
@@ -151,6 +168,7 @@ function ShowPopUp() {
                         <Modal.Body>
                             <form>
                                 <p className="err">{errMsg}</p>
+                                <p className="success">{successMsg}</p>
                                 <input value={email} type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
                                 <input value={password} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
                             </form>
@@ -179,6 +197,8 @@ function ShowPopUp() {
                     <div className="body-register-modal">
                         <Modal.Body>
                             <form>
+                                <p className="err">{errMsg}</p>
+                                <p className="success">{successMsg}</p>
                                 <input value={name} type="text" placeholder="Name" onChange={(e) => setName(e.target.value)}></input>
                                 <input value={address} type="text" placeholder="Address" onChange={(e) => setAddress(e.target.value)}></input>
                                 <input value={email} type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
