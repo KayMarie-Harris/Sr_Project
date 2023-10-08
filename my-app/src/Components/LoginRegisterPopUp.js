@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Banner from "./Banner";
+import { useAuth } from "./AuthContex";
 
 function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
-    const [login, setLogin] = useState(false);
+    const { isLoggedIn, setIsLoggedIn, userName, setUserName } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -18,7 +19,6 @@ function ShowPopUp() {
 
     const handleLogin = async () => {
         try {
-            console.log("line 13")
             const response = await fetch('http://157.245.213.41:5000/login', {
                 method: 'POST',
                 headers: {
@@ -28,17 +28,36 @@ function ShowPopUp() {
             });
 
             if (response.ok) {
-
                 setSuccessMsg(`Login Successful! Welcome`);
                 handleCloseLogin();
-                setLogin(true);
-                window.alert("Login Successful you sussy baka!"); // Display success message using window.alert
+                setIsLoggedIn(true);
                 console.log(successMsg);
                 console.log(response)
+
+                // Get Profile Info
+                try {
+                    const profileResponse = await fetch('http://157.245.213.41:5000/profile', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                    });
+
+                    if (profileResponse.ok) {
+                        setUserName(profileResponse.name);
+                        console.log(profileResponse);
+                    }
+                    else {
+                        console.log("Err getting profile information: ", profileResponse);
+                    }
+                } catch (profileError) {
+                    console.log("Err getting profile information: ", profileError);
+                }
             }
             else {
-                setLogin(false);
-                console.log("Login failed");
+                setIsLoggedIn(false);
+                setErrMsg("Login Failed")
+                console.log(errMsg);
             }
         } catch (error) {
             handleCloseLogin();
@@ -52,10 +71,27 @@ function ShowPopUp() {
         setShowLogin(true);
         setShowRegister(false);
     }
-    const handleSignOut = () => {
-        console.log("not implemented")
-        setLogin(false)
-    }
+    const handleLogout = async () => {
+        try {
+            const response = await fetch('http://157.245.213.41:5000/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            if (response.ok) {
+                console.log("User logged out");
+                setIsLoggedIn(false);
+                setUserName('');
+            }
+            else {
+                console.log("error signing out")
+            }
+        } catch (error) {
+            console.log("Err during logout:", error);
+        }
+    };
 
     const handleRegister = async () => {
         try {
@@ -74,7 +110,7 @@ function ShowPopUp() {
                 window.alert("Registration Successful! tis Burger time");
             }
             else {
-                setLogin(false);
+                setIsLoggedIn(false);
                 console.log("Registration failed");
             }
         } catch (error) {
@@ -92,10 +128,10 @@ function ShowPopUp() {
 
     return (
         <>
-           {!login && <button className="user-button" variant="primary" onClick={handleShowLogin}><img src="user.png" />Sign In</button>}
-           { login && <button className="user-button" variant="primary" onClick={handleSignOut}><img src="user.png" />Sign Out</button> }
-           {successMsg && <Banner message={successMsg} type="success" />}
-           {errMsg && <Banner message={errMsg} type="error" />}
+            {!isLoggedIn && <button className="user-button-login" variant="primary" onClick={handleShowLogin}><img src="user.png" />Sign In</button>}
+            {isLoggedIn && <button className="user-button-logout" variant="primary" onClick={handleLogout}><img src="user.png" />Sign Out</button>}
+            {successMsg && <Banner message={successMsg} type="success" />}
+            {errMsg && <Banner message={errMsg} type="error" />}
             <div className={showLogin ? "login-modal-show" : "login-modal-hide"}>
                 <Modal className="login-modal" show={showLogin} onHide={handleCloseLogin}>
                     <div className="header-login-modal">

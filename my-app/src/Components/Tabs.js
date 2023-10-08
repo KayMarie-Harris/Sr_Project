@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../App.css";
+import { useAuth } from "./AuthContex";
 
 // YT Tutorial - https://www.youtube.com/watch?v=WkREeDy2WQ4
 
@@ -7,6 +8,7 @@ function Tabs() {
 
     const [toggleState, setToggleState] = useState(1);
     const [contentState, setContentState] = useState(1);
+    const { isLoggedIn, setIsLoggedIn, userName, setUserName } = useAuth();
 
     const toggleTab = (index) => {
         setToggleState(index);
@@ -19,14 +21,15 @@ function Tabs() {
             <div className="bloc-tabs">
                 <button className={toggleState === 1 ? "active-tabs" : "tabs"} onClick={() => toggleTab(1)}>Home</button>
                 <button className={toggleState === 2 ? "active-tabs" : "tabs"} onClick={() => toggleTab(2)}>Menu</button>
-                <button className={toggleState === 3 ? "active-tabs" : "tabs"} onClick={() => toggleTab(3)}>Orders</button> {/* Should only display if login === true (Not yet implemented) */}
+                {isLoggedIn && <button className={toggleState === 3 ? "active-tabs" : "tabs"} onClick={() => toggleTab(3)}>Orders</button>}
             </div>
 
             <div className="content-tabs">
                 <div className={contentState === 1 ? "content active-content" : "content"}>
                     <h2>Home</h2>
                     <hr />
-                    <p>All borgers come with Hepatitis C</p>
+                    {!isLoggedIn && <p>Welcome Fellow Cheeseburger Lovers!</p>}
+                    {isLoggedIn && <p>Welcome, {userName}!</p>}
                 </div>
 
                 <div className={contentState === 2 ? "content active-content" : "content"}>
@@ -38,7 +41,7 @@ function Tabs() {
                 <div className={contentState === 3 ? "content active-content" : "content"}>
                     <h2>Orders</h2>
                     <hr />
-                    <p>Login to view your Orders</p>
+                    <p>No Order History</p>
                 </div>
             </div>
         </div>
