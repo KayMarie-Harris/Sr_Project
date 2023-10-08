@@ -18,6 +18,11 @@ function ShowPopUp() {
     const [phoneNumber, setPhoneNumber] = useState('');
 
     const handleLogin = async () => {
+        // Validate email and password
+        if (!email || !password) {
+            setErrMsg("Email and password are required.");
+            return;
+        }
         try {
             const response = await fetch('http://157.245.213.41:5000/login', {
                 method: 'POST',
@@ -56,7 +61,7 @@ function ShowPopUp() {
             }
             else {
                 setIsLoggedIn(false);
-                setErrMsg("Login Failed")
+                setErrMsg("Email or Password is Incorrect")
                 console.log(errMsg);
             }
         } catch (error) {
@@ -84,6 +89,7 @@ function ShowPopUp() {
                 console.log("User logged out");
                 setIsLoggedIn(false);
                 setUserName('');
+                setErrMsg('');
             }
             else {
                 console.log("error signing out")
@@ -144,6 +150,7 @@ function ShowPopUp() {
                     <div className="body-login-modal">
                         <Modal.Body>
                             <form>
+                                <p className="err">{errMsg}</p>
                                 <input value={email} type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
                                 <input value={password} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
                             </form>

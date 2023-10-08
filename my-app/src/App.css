@@ -253,15 +253,11 @@ input {
   margin-top: 5px;
 }
 
-.banner-err {
+.err {
   background-color: red;
   color: white;
   font-weight: bold;
-  position: absolute;
   border-radius: 10px;
-  margin-left: 10%;
-  margin-right: 10%;
-  width: 80vw;
   text-align: center;
   margin-top: 5px;
 }
