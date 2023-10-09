@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../App.css";
 import { useAuth } from "./AuthContex";
+import Menu from "./Menu";
 
 // YT Tutorial - https://www.youtube.com/watch?v=WkREeDy2WQ4
 
@@ -26,20 +27,20 @@ function Tabs() {
 
             <div className="content-tabs">
                 <div className={contentState === 1 ? "content active-content" : "content"}>
-                    <h2>Home</h2>
+                    <h1>Home</h1>
                     <hr />
                     {!isLoggedIn && <p>Welcome Fellow Cheeseburger Lovers!</p>}
                     {isLoggedIn && <p>Welcome, {userName}!</p>}
                 </div>
 
                 <div className={contentState === 2 ? "content active-content" : "content"}>
-                    <h2>Menu</h2>
+                    <h1>Menu</h1>
                     <hr />
-                    <p>Borger</p>
+                    <Menu />
                 </div>
 
                 <div className={contentState === 3 ? "content active-content" : "content"}>
-                    <h2>Orders</h2>
+                    <h1>Orders</h1>
                     <hr />
                     <p>No Order History</p>
                 </div>
