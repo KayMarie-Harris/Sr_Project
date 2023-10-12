@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
-import menuItems from "../Assets/MenuAssets";
+import menuItems from "../Assets/MenuAssets.ts";
 
 function Menu() {
     const [showItemModal, setShowItemModal] = useState(false);
@@ -41,6 +41,7 @@ function Menu() {
                 <Modal.Header closeButton>
                     <Modal.Title>
                         <h1>{menuItems[menuItem].name}</h1>
+                        <p>{menuItems[menuItem].description}</p>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
