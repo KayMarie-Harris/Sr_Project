@@ -1,24 +1,24 @@
+import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
-import { useState } from "react";
 import menuItems from "../Assets/MenuAssets";
 
 function Menu() {
     const [showItemModal, setShowItemModal] = useState(false);
-    const [menuItem, setMenuItem] = useState(0)
+    const [menuItem, setMenuItem] = useState(0);
 
-    const handleShowItemModal = (num) => {
-        setMenuItem(num)
-        setShowItemModal(true)
-    }
+    const handleShowItemModal = (num) => () => {
+        setMenuItem(num);
+        setShowItemModal(true);
+    };
 
     const handleHideItemModal = () => {
-        setShowItemModal(false)
-    }
+        setShowItemModal(false);
+    };
 
     const handleAddToBag = () => {
-        setShowItemModal(false)
-        console.log("Add to Bag Not implemented")
-    }
+        setShowItemModal(false);
+        console.log("Add to Bag Not implemented");
+    };
 
     return (
         <>
@@ -29,7 +29,7 @@ function Menu() {
                 </div>
                 <div className="Sides">
                     <h2>Sides</h2>
-                    <button>Fries onClick={handleShowItemModal(2)}</button>
+                    <button onClick={handleShowItemModal(2)}>Fries</button>
                 </div>
                 <div className="Drinks">
                     <h2>Drinks</h2>
@@ -68,7 +68,7 @@ function Menu() {
                 </Modal.Footer>
             </Modal>
         </>
-    )
+    );
 }
 
 export default Menu;
