@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import menuItems from "../Assets/MenuAssets.ts";
+import { useAuth } from "./AuthContex.js";
 
 function Menu() {
     const [showItemModal, setShowItemModal] = useState(false);
     const [menuItem, setMenuItem] = useState(0);
+    const { isLoggedIn, order, setOrder } = useAuth();
 
     const handleShowItemModal = (num) => () => {
+        if (!isLoggedIn) {
+            window.alert("Login to start an order!")
+            //return
+        }
         setMenuItem(num);
         setShowItemModal(true);
     };
@@ -15,9 +21,21 @@ function Menu() {
         setShowItemModal(false);
     };
 
-    const handleAddToBag = () => {
+    // useEffect to log order when it changes
+    useEffect(() => {
+        console.log(order);
+    }, [order]);
+
+    const handleAddToBag = (item, order, setOrder) => {
         setShowItemModal(false);
-        console.log("Add to Bag Not implemented");
+
+        const updatedOrder = {
+            ...order,
+            total: (parseFloat(order.total) + parseFloat(item.price)).toFixed(2),
+            items: [...order.items, item]
+        };
+
+        setOrder(updatedOrder);
     };
 
     return (
@@ -41,31 +59,15 @@ function Menu() {
                 <Modal.Header closeButton>
                     <Modal.Title>
                         <h1>{menuItems[menuItem].name}</h1>
-                        <p>{menuItems[menuItem].description}</p>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h3>Add-Ons</h3>
-                    <form>
-                        <input type="checkbox"></input>
-                        <input type="checkbox"></input>
-                        <input type="checkbox"></input>
-                    </form>
-                    <h3>Extras</h3>
-                    <form>
-                        <input type="checkbox"></input>
-                        <input type="checkbox"></input>
-                        <input type="checkbox"></input>
-                    </form>
-                    <h3>Remove</h3>
-                    <form>
-                        <input type="checkbox"></input>
-                        <input type="checkbox"></input>
-                        <input type="checkbox"></input>
-                    </form>
+                    <h5>{menuItems[menuItem].description}</h5>
+                    <h3>Modifications</h3>
+                    <p>Coming Soon!</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={handleAddToBag}>Add To Bag</button>
+                    <button onClick={() => handleAddToBag(menuItems[menuItem], order, setOrder)}>Add To Bag</button>
                 </Modal.Footer>
             </Modal>
         </>
