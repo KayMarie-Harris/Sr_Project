@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Banner from "./Banner";
@@ -36,11 +36,11 @@ function ShowPopUp() {
                 setSuccessMsg(`Login Successful! Welcome`);
                 handleCloseLogin();
                 setIsLoggedIn(true);
-                console.log(successMsg);
-                console.log(response['user']);
+
+                const responseObj = JSON.parse(response)
 
                 // Get users name
-                //setUserName(response['user']['name']);
+                setUserName(responseObj.user.name);
             }
             else {
                 setIsLoggedIn(false);
@@ -88,7 +88,7 @@ function ShowPopUp() {
     };
 
     const handleRegister = async () => {
-        if (confirmPassword != password) {
+        if (confirmPassword !== password) {
             setErrMsg("Passwords do not match");
             return;
         }
