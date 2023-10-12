@@ -37,27 +37,10 @@ function ShowPopUp() {
                 handleCloseLogin();
                 setIsLoggedIn(true);
                 console.log(successMsg);
-                console.log(response)
+                console.log(response['user']);
 
-                // Get Profile Info
-                try {
-                    const profileResponse = await fetch('http://157.245.213.41:5000/profile', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                    });
-
-                    if (profileResponse.ok) {
-                        setUserName(profileResponse.name);
-                        console.log(profileResponse);
-                    }
-                    else {
-                        console.log("Err getting profile information: ", profileResponse);
-                    }
-                } catch (profileError) {
-                    console.log("Err getting profile information: ", profileError);
-                }
+                // Get users name
+                //setUserName(response['user']['name']);
             }
             else {
                 setIsLoggedIn(false);

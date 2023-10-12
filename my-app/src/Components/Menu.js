@@ -1,10 +1,13 @@
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
+import menuItems from "../Assets/MenuAssets";
 
 function Menu() {
     const [showItemModal, setShowItemModal] = useState(false);
+    const [menuItem, setMenuItem] = useState(0)
 
-    const handleShowItemModal = () => {
+    const handleShowItemModal = (num) => {
+        setMenuItem(num)
         setShowItemModal(true)
     }
 
@@ -22,22 +25,22 @@ function Menu() {
             <div className="menu">
                 <div className="Burgers">
                     <h2>Burgers</h2>
-                    <button onClick={handleShowItemModal}>Burger</button>
+                    <button onClick={handleShowItemModal(0)}>Burger</button>
                 </div>
                 <div className="Sides">
                     <h2>Sides</h2>
-                    <button>Fries</button>
+                    <button>Fries onClick={handleShowItemModal(2)}</button>
                 </div>
                 <div className="Drinks">
                     <h2>Drinks</h2>
-                    <button>Soda</button>
+                    <button onClick={handleShowItemModal(4)}>Soda</button>
                 </div>
             </div>
 
             <Modal className="item-modal" show={showItemModal} onHide={handleHideItemModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        <h1>Item Name</h1>
+                        <h1>{menuItems[menuItem].name}</h1>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
