@@ -11,6 +11,12 @@ export const AuthProvider = ({ children }) => {
         items: [],
     })
 
+    const authenticated = localStorage.getItem('authenticated');
+
+    if (authenticated) {
+        setIsLoggedIn(true);
+    }
+
     return (
         <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, userName, setUserName, order, setOrder }}>
             {children}

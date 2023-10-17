@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Banner from "./Banner";
 import { useAuth } from "./AuthContex";
 
-function ShowPopUp({ isLoggedIn }) {
+function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
     const { isLoggedIn, setIsLoggedIn, userName, setUserName } = useAuth();
@@ -36,6 +36,7 @@ function ShowPopUp({ isLoggedIn }) {
                 setSuccessMsg(`Login Successful! Welcome`);
                 handleCloseLogin();
                 setIsLoggedIn(true);
+                localStorage.setItem('authenticated', true);
 
                 const responseObj = JSON.parse(response)
 
@@ -78,6 +79,7 @@ function ShowPopUp({ isLoggedIn }) {
                 setIsLoggedIn(false);
                 setUserName('');
                 setErrMsg('');
+                localStorage.setItem('authenticated', false);
             }
             else {
                 console.log("error signing out");

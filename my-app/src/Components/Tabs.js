@@ -5,11 +5,11 @@ import Menu from "./Menu";
 
 // YT Tutorial - https://www.youtube.com/watch?v=WkREeDy2WQ4
 
-function Tabs({ isLoggedIn, onLogin, onLogout }) {
+function Tabs() {
 
     const [toggleState, setToggleState] = useState(1);
     const [contentState, setContentState] = useState(1);
-    const { isLoggedIn, setIsLoggedIn, userName, setUserName } = useAuth();
+    const { isLoggedIn, userName,} = useAuth();
 
     const toggleTab = (index) => {
         setToggleState(index);

@@ -4,15 +4,6 @@ import Header from './Components/Header';
 import Tabs from './Components/Tabs';
 
 function App() {
-  const [isLoggedIn, setIsLoggedin] = useState(false);
-
-  const handleLogin = () => {
-    setIsLoggedin(true)
-  }
-
-  const handleLogout = () => {
-    setIsLoggedin(false)
-  }
 
   return (
     <AuthProvider>
