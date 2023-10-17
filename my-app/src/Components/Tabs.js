@@ -1,19 +1,15 @@
 import { useState } from "react";
 import "../App.css";
-import ProfileInfo from "./bff/profile";
-
-
+import { useAuth } from "./AuthContex";
+import Menu from "./Menu";
 
 // YT Tutorial - https://www.youtube.com/watch?v=WkREeDy2WQ4
 
-function Tabs({ isLoggedIn, onLogin, toggleTab, contentState }) {
-
-    const apiEndpoint = "http://157.245.213.41:5000/profile";
-
-    const { name, isLoggedIn } = ProfileInfo(apiEndpoint);
+function Tabs() {
 
     const [toggleState, setToggleState] = useState(1);
     const [contentState, setContentState] = useState(1);
+    const { isLoggedIn, setIsLoggedIn, userName, setUserName } = useAuth();
 
     const toggleTab = (index) => {
         setToggleState(index);
@@ -32,22 +28,22 @@ function Tabs({ isLoggedIn, onLogin, toggleTab, contentState }) {
 
             <div className="content-tabs">
                 <div className={contentState === 1 ? "content active-content" : "content"}>
-                    <h2>Home</h2>
+                    <h1>Home</h1>
                     <hr />
-                    {!isLoggedIn ? (<p>All borgers come with Hepatitis C</p>) :
-                        (<p> Welcome {name}, you are successfully logged in!</p>)}
+                    {!isLoggedIn && <p>Welcome Fellow Cheeseburger Lovers!</p>}
+                    {isLoggedIn && <p>Welcome, {userName}!</p>}
                 </div>
 
                 <div className={contentState === 2 ? "content active-content" : "content"}>
-                    <h2>Menu</h2>
+                    <h1>Menu</h1>
                     <hr />
-                    <p>Borger</p>
+                    <Menu />
                 </div>
 
                 <div className={contentState === 3 ? "content active-content" : "content"}>
-                    <h2>Orders</h2>
+                    <h1>Orders</h1>
                     <hr />
-                    <p>Login to view your Orders</p>
+                    <p>No Order History</p>
                 </div>
             </div>
         </div>
