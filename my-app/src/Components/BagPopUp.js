@@ -21,18 +21,22 @@ function ShowBag() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: order
+                body: JSON.stringify(order)
             });
             if (response.ok) {
                 window.alert("Order Placed!");
-            }
-            else {
+                setOrder({
+                    total: 0,
+                    status: "pending",
+                    items: [],
+                });
+            } else {
                 window.alert("Something went wrong, try again later");
             }
         } catch (error) {
-            console.log(error);
+            console.error("Error placing order:", error);
         }
-    }
+    };
 
     return (
         <>
