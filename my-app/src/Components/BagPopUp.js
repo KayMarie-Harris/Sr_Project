@@ -4,7 +4,7 @@ import { useAuth } from "./AuthContex";
 function ShowBag() {
 
     const [showBag, setShowBag] = useState(false);
-    const { order } = useAuth();
+    const { order, setOrder } = useAuth();
 
     const handleShowBag = () => {
         setShowBag(true)

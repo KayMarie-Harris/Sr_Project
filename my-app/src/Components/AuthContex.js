@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 
@@ -10,6 +10,13 @@ export const AuthProvider = ({ children }) => {
         status: "pending",
         items: [],
     })
+
+    useEffect(() => {
+        const authenticated = localStorage.getItem('authenticated');
+        if (authenticated) {
+          setIsLoggedIn(true)
+        }
+      }, []);
 
     return (
         <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, userName, setUserName, order, setOrder }}>

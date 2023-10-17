@@ -35,19 +35,21 @@ function ShowPopUp() {
             if (response.ok) {
                 setSuccessMsg(`Login Successful! Welcome`);
                 handleCloseLogin();
+
+                localStorage.setItem('authenticated', true)
                 setIsLoggedIn(true);
-
                 const responseObj = JSON.parse(response)
-
                 // Get users name
                 setUserName(responseObj.user.name);
             }
             else {
+                localStorage.setItem('authenticated', false)
                 setIsLoggedIn(false);
                 setErrMsg("Email or Password is Incorrect")
                 console.log(errMsg);
             }
         } catch (error) {
+            localStorage.setItem('authenticated', false)
             handleCloseLogin();
             console.log("Err during login:", error);
         }
@@ -74,6 +76,7 @@ function ShowPopUp() {
             });
 
             if (response.ok) {
+                localStorage.setItem('authenticated', false)
                 console.log("User logged out");
                 setIsLoggedIn(false);
                 setUserName('');
