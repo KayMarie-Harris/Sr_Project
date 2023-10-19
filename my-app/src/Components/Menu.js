@@ -11,7 +11,7 @@ function Menu() {
     const handleShowItemModal = (num) => () => {
         if (!isLoggedIn) {
             window.alert("Login to start an order!")
-            // return
+            return
         }
         setMenuItem(num);
         setShowItemModal(true);
