@@ -4,7 +4,7 @@ import { useAuth } from "./AuthContex";
 function ShowBag() {
 
     const [showBag, setShowBag] = useState(false);
-    const { order } = useAuth();
+    const { order, setOrder } = useAuth();
 
     const handleShowBag = () => {
         setShowBag(true)
@@ -15,6 +15,7 @@ function ShowBag() {
     }
 
     const handlePlaceOrder = async () => {
+        console.log("Order stringfy:", JSON.stringify(order))
         try {
             const response = await fetch('http://157.245.213.41:5000/order', {
                 method: 'POST',
