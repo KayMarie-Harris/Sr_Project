@@ -4,7 +4,7 @@ import { useAuth } from "./AuthContex";
 function ShowBag() {
 
     const [showBag, setShowBag] = useState(false);
-    const { order } = useAuth();
+    const { order, setOrder } = useAuth();
 
     const handleShowBag = () => {
         setShowBag(true)
@@ -15,24 +15,29 @@ function ShowBag() {
     }
 
     const handlePlaceOrder = async () => {
+        console.log("Order stringfy:", JSON.stringify(order))
         try {
             const response = await fetch('http://157.245.213.41:5000/order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: order
+                body: JSON.stringify(order)
             });
             if (response.ok) {
                 window.alert("Order Placed!");
-            }
-            else {
+                setOrder({
+                    total: 0,
+                    status: "pending",
+                    items: [],
+                });
+            } else {
                 window.alert("Something went wrong, try again later");
             }
         } catch (error) {
-            console.log(error);
+            console.error("Error placing order:", error);
         }
-    }
+    };
 
     return (
         <>
