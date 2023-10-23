@@ -9,7 +9,7 @@ function Tabs() {
 
     const [toggleState, setToggleState] = useState(1);
     const [contentState, setContentState] = useState(1);
-    const { isLoggedIn, setIsLoggedIn, userName, setUserName } = useAuth();
+    const { isLoggedIn, userName } = useAuth();
 
     const toggleTab = (index) => {
         setToggleState(index);
@@ -26,12 +26,39 @@ function Tabs() {
             </div>
 
             <div className="content-tabs">
-                <div className={contentState === 1 ? "content active-content" : "content"}>
-                    <h1>Home</h1>
-                    <hr />
-                    {!isLoggedIn && <p>Welcome Fellow Cheeseburger Lovers!</p>}
-                    {isLoggedIn && <p>Welcome, {userName}!</p>}
-                </div>
+            <div className={contentState === 1 ? "content active-content" : "content"}>
+    <img  className="home-banner" src="I Love Cheeseburgers.png" alt="I Love Cheeseburgers Banner" />
+    <h1>Home</h1>
+    {!isLoggedIn && (<> 
+        <p1>Welcome Fellow Cheeseburger Lovers!</p1>
+        <p2>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+        </p2>
+        <button>Login</button>
+        <button>Register</button>
+    </>)}
+    {isLoggedIn && (
+        <>
+            <p>Welcome, {userName}!</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                est laborum.
+            </p>
+            <button>Menu</button>
+        </>
+    )}
+</div>
+
 
                 <div className={contentState === 2 ? "content active-content" : "content"}>
                     <h1>Menu</h1>
