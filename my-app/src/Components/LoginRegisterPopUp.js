@@ -37,10 +37,14 @@ function ShowPopUp() {
                 handleCloseLogin();
                 setIsLoggedIn(true);
 
-                const responseObj = JSON.parse(response)
+                response.text().then((jsonString) => {
+                    const responseObj = JSON.parse(jsonString);
 
-                // Get users name
-                setUserName(responseObj.user.name);
+                    // Get users name
+                    setUserName(responseObj.user.name);
+                }).catch((error) => {
+                    console.error("Couldn't parse: ", error)
+                })
             }
             else {
                 setIsLoggedIn(false);
