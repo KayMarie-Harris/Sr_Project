@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect, useMemo } from 'react';
 
 const AuthContext = createContext();
 
@@ -11,8 +11,29 @@ export const AuthProvider = ({ children }) => {
         items: [],
     })
 
+    useEffect(() => {
+        const auth = localStorage.getItem('auth');
+        if (auth) {
+            setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
+        }
+
+        const userName = localStorage.getItem('userName');
+        setUserName(userName);
+    }, []);
+
+    const contextValue = useMemo(() => ({
+        isLoggedIn,
+        setIsLoggedIn,
+        userName,
+        setUserName,
+        order,
+        setOrder,
+    }), [isLoggedIn, userName, order]);
+
     return (
-        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, userName, setUserName, order, setOrder }}>
+        <AuthContext.Provider value={contextValue}>
             {children}
         </AuthContext.Provider>
     );

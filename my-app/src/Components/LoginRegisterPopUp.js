@@ -7,13 +7,12 @@ import { useAuth } from "./AuthContex";
 function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
-    const { isLoggedIn, setIsLoggedIn, userName, setUserName } = useAuth();
+    const { isLoggedIn, setIsLoggedIn, userName, setUserName, auth } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [successMsg, setSuccessMsg] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const [name, setName] = useState('');
     const [address, setAddress] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('');
 
@@ -36,12 +35,14 @@ function ShowPopUp() {
                 setSuccessMsg(`Login Successful! Welcome`);
                 handleCloseLogin();
                 setIsLoggedIn(true);
+                localStorage.setItem('auth', true)
 
                 response.text().then((jsonString) => {
                     const responseObj = JSON.parse(jsonString);
 
                     // Get users name
                     setUserName(responseObj.user.name);
+                    localStorage.setItem('userName', responseObj.user.name);
                 }).catch((error) => {
                     console.error("Couldn't parse: ", error)
                 })
@@ -82,6 +83,8 @@ function ShowPopUp() {
                 setIsLoggedIn(false);
                 setUserName('');
                 setErrMsg('');
+                localStorage.setItem('auth', false)
+                localStorage.setItem('userName', '')
             }
             else {
                 console.log("error signing out");
@@ -103,7 +106,7 @@ function ShowPopUp() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, address, email, phoneNumber, password }),
+                body: JSON.stringify({ userName, address, email, phoneNumber, password }),
             });
 
             if (response.ok) {
@@ -186,7 +189,7 @@ function ShowPopUp() {
                             <form>
                                 <p className="err">{errMsg}</p>
                                 <p className="success">{successMsg}</p>
-                                <input value={name} type="text" placeholder="Name" onChange={(e) => setName(e.target.value)}></input>
+                                <input value={userName} type="text" placeholder="Name" onChange={(e) => setUserName(e.target.value)}></input>
                                 <input value={address} type="text" placeholder="Address" onChange={(e) => setAddress(e.target.value)}></input>
                                 <input value={email} type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
                                 <input value={phoneNumber} type="text" placeholder="Phone Number" onChange={(e) => setPhoneNumber(e.target.value)}></input>
