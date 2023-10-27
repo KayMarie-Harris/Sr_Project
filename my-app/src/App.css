@@ -282,11 +282,19 @@ input {
   top: 100px;
   bottom: 0%;
   box-shadow: -7px 0px 0px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .bag-container h1 {
   color: #ffae00;
   text-align: center;
+}
+
+.bag-footer {
+  margin-top: auto; /* Push the .bag-footer to the bottom of the .bag element */
+  /* Additional styles for .bag-footer if needed */
 }
 
 .home-banner {
@@ -328,6 +336,12 @@ input {
   height: 150px;
 }
 
+.img-br {
+  display: block;
+  margin: 0 auto;
+  height: 100px;
+}
+
 .home-btn {
   background-color: #ffae00;
   color: white;
@@ -353,3 +367,53 @@ input {
   font-weight: bold;
 }
 
+.menu {
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.Burgers,
+.Sides,
+.Drinks {
+  flex-basis: 30%; 
+  padding: 20px; 
+  text-align: center; 
+}
+
+.item-btn img{
+  height: 250px;
+  border-style: solid;
+  border-color: black;
+}
+
+.item-btn {
+  border-style: hidden;
+  background-color: white;
+}
+
+.place-order-btn {
+  background-color: #ffae00;
+  color: white;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.place-order-btn:hover {
+  background-color: #ffae00;
+  color: white;
+  box-shadow: -7px 7px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.bag-container ul {
+  list-style: none;
+}

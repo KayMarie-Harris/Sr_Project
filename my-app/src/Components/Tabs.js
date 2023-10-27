@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../App.css";
 import { useAuth } from "./AuthContex";
 import Menu from "./Menu";
+import { Button } from "react-bootstrap";
+import  ShowPopUp from "./LoginRegisterPopUp";
 
 // YT Tutorial - https://www.youtube.com/watch?v=WkREeDy2WQ4
 
@@ -42,13 +44,13 @@ function Tabs() {
                         </p2>
                         <br />
                         <div className="btn-container">
-                            <button className="home-btn">Login</button>
-                            <button className="home-btn">Register</button>
+                            <button className="home-btn" onClick={() => toggleTab(2)}>Menu</button>
                         </div>
                     </>)}
                     {isLoggedIn && (
                         <>
                             <p>Welcome, {userName}!</p>
+                            <br />
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -58,15 +60,20 @@ function Tabs() {
                                 cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
                                 est laborum.
                             </p>
-                            <button>Menu</button>
+                            <br />
+                            <div className="btn-container">
+                                <button className="home-btn" onClick={() => toggleTab(2)}>Menu</button>
+                                <button className="home-btn" onClick={() => toggleTab(3)}>My Orders</button>
+                            </div>
                         </>
                     )}
                 </div>
 
 
                 <div className={contentState === 2 ? "content active-content" : "content"}>
-                    <h1>Menu</h1>
-                    <hr />
+                    <img className="img-header" src="menu.png" alt="Menu" />
+                    <img className="img-br" src="squiggle.png" />
+
                     <Menu />
                 </div>
 
