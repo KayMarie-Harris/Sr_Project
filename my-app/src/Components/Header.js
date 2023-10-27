@@ -6,7 +6,7 @@ function Header() {
     return (
         <>
             <img className="logo" src='burger.png' alt="happy borger" />
-            <h1>I Love Cheeseburgers</h1>
+            <img className="site-name" src='I Love Cheeseburgers.png' alt="I Love Cheeseburgers" />
             <ShowPopUp />
             <ShowBag />
 

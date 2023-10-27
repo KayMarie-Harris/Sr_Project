@@ -43,15 +43,15 @@ function Menu() {
             <div className="menu">
                 <div className="Burgers">
                     <h2>Burgers</h2>
-                    <button onClick={handleShowItemModal(0)}>Burger</button>
+                    <button className="item-btn" onClick={handleShowItemModal(0)}><img src="borger.jpg" alt="burger"></img>Classic Burger</button>
                 </div>
                 <div className="Sides">
                     <h2>Sides</h2>
-                    <button onClick={handleShowItemModal(2)}>Fries</button>
+                    <button className="item-btn" onClick={handleShowItemModal(2)}><img src="fries.jpg" />French Fries</button>
                 </div>
                 <div className="Drinks">
                     <h2>Drinks</h2>
-                    <button onClick={handleShowItemModal(4)}>Soda</button>
+                    <button className="item-btn" onClick={handleShowItemModal(4)}><img src="soda.jpg" />Coca-Cola</button>
                 </div>
             </div>
 

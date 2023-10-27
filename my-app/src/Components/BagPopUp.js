@@ -45,7 +45,9 @@ function ShowBag() {
                 <button className="bag-button" onClick={handleShowBag}><img src="bag.png" alt="Bag" /></button>}
 
             {showBag && <div className="bag-container">
-                <h1>My Bag</h1>
+                <div className="bag-header">
+                    <h1>My Bag</h1>
+                </div>
                 <ul>
                     {order.items.map(item =>
                         <li>
@@ -55,10 +57,10 @@ function ShowBag() {
                 </ul>
                 <div className="bag-footer">
                     <ul>
-                        <li>Total: {order.total}</li>
-                        <li>Tax: tax free special :D</li>
+                        <li>Total: ${(order.total).toFixed(2)}</li>
+                        <li>Tax: ${(order.total * .08).toFixed(2)}</li>
                     </ul>
-                    <button onClick={handlePlaceOrder}>Place Order</button>
+                    <button onClick={handlePlaceOrder} className="place-order-btn">Place Order</button>
                 </div>
             </div>}
         </>
