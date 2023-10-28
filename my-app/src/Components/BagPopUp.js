@@ -4,7 +4,7 @@ import { useAuth } from "./AuthContex";
 function ShowBag() {
 
     const [showBag, setShowBag] = useState(false);
-    const { order, setOrder } = useAuth();
+    const { order, setOrder, email } = useAuth();
 
     const handleShowBag = () => {
         setShowBag(true)
@@ -27,6 +27,7 @@ function ShowBag() {
             if (response.ok) {
                 window.alert("Order Placed!");
                 setOrder({
+                    email: email,
                     total: 0,
                     status: "pending",
                     items: [],
@@ -57,7 +58,7 @@ function ShowBag() {
                 </ul>
                 <div className="bag-footer">
                     <ul>
-                        <li>Total: ${(order.total).toFixed(2)}</li>
+                        <li>Total: ${parseFloat(order.total).toFixed(2)}</li>
                         <li>Tax: ${(order.total * .08).toFixed(2)}</li>
                     </ul>
                     <button onClick={handlePlaceOrder} className="place-order-btn">Place Order</button>

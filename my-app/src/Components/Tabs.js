@@ -2,8 +2,7 @@ import { useState } from "react";
 import "../App.css";
 import { useAuth } from "./AuthContex";
 import Menu from "./Menu";
-import { Button } from "react-bootstrap";
-import  ShowPopUp from "./LoginRegisterPopUp";
+import Orders from "./Orders";
 
 // YT Tutorial - https://www.youtube.com/watch?v=WkREeDy2WQ4
 
@@ -29,10 +28,10 @@ function Tabs() {
 
             <div className="content-tabs">
                 <div className={contentState === 1 ? "content active-content" : "content"}>
-                    <img  className="home-banner" src="I Love Cheeseburgers Banner.png" alt="I Love Cheeseburgers Banner" />
+                    <img className="home-banner" src="I Love Cheeseburgers Banner.png" alt="I Love Cheeseburgers Banner" />
                     <img className="img-header" src="home.png" alt="Home" />
-                    {!isLoggedIn && (<> 
-                        <p1>Welcome Fellow Cheeseburger Lovers!</p1> 
+                    {!isLoggedIn && (<>
+                        <p1>Welcome Fellow Cheeseburger Lovers!</p1>
                         <br />
                         <p2>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -80,7 +79,7 @@ function Tabs() {
                 <div className={contentState === 3 ? "content active-content" : "content"}>
                     <h1>Orders</h1>
                     <hr />
-                    <p>No Order History</p>
+                    <Orders />
                 </div>
             </div>
         </div>

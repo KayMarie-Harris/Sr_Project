@@ -5,7 +5,9 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userName, setUserName] = useState('');
+    const [email, setEmail] = useState('');
     const [order, setOrder] = useState({
+        email: email,
         total: 0,
         status: "pending",
         items: [],
@@ -15,12 +17,20 @@ export const AuthProvider = ({ children }) => {
         const auth = localStorage.getItem('auth');
         if (auth) {
             setIsLoggedIn(true);
+
+            const savedEmail = localStorage.getItem('email');
+            setEmail(savedEmail);
+
+            const savedUserName = localStorage.getItem('userName');
+            setUserName(userName);
+
+            setOrder(prevOrder => ({
+                ...prevOrder,
+                email: savedEmail,
+            }));
         } else {
             setIsLoggedIn(false);
         }
-
-        const userName = localStorage.getItem('userName');
-        setUserName(userName);
     }, []);
 
     const contextValue = useMemo(() => ({
@@ -30,7 +40,9 @@ export const AuthProvider = ({ children }) => {
         setUserName,
         order,
         setOrder,
-    }), [isLoggedIn, userName, order]);
+        email,
+        setEmail
+    }), [isLoggedIn, userName, order, email]);
 
     return (
         <AuthContext.Provider value={contextValue}>

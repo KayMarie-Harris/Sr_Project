@@ -7,8 +7,7 @@ import { useAuth } from "./AuthContex";
 function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
-    const { isLoggedIn, setIsLoggedIn, userName, setUserName, auth } = useAuth();
-    const [email, setEmail] = useState('');
+    const { isLoggedIn, setIsLoggedIn, userName, setUserName, email, setEmail } = useAuth();
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [successMsg, setSuccessMsg] = useState('');
@@ -40,9 +39,14 @@ function ShowPopUp() {
                 response.text().then((jsonString) => {
                     const responseObj = JSON.parse(jsonString);
 
-                    // Get users name
+                    // Set users name
                     setUserName(responseObj.user.name);
                     localStorage.setItem('userName', responseObj.user.name);
+
+                    // Set email
+                    setEmail(responseObj.user.email)
+                    localStorage.setItem("email", responseObj.user.email)
+
                 }).catch((error) => {
                     console.error("Couldn't parse: ", error)
                 })
@@ -82,9 +86,11 @@ function ShowPopUp() {
                 console.log("User logged out");
                 setIsLoggedIn(false);
                 setUserName('');
+                setEmail('');
                 setErrMsg('');
-                localStorage.setItem('auth', false)
-                localStorage.setItem('userName', '')
+                localStorage.setItem('auth', false);
+                localStorage.setItem('userName', '');
+                localStorage.setItem('email', '');
             }
             else {
                 console.log("error signing out");

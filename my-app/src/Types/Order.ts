@@ -1,8 +1,9 @@
 import Item from "./Item"
 
 type Order = {
+    "email": string,
     "total": number,
-    "status": string, // TODO: Make into an enum
+    "status": string,
     "items": Item[],
 }
 
