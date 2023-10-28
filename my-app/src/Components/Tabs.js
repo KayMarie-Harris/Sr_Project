@@ -79,7 +79,7 @@ function Tabs() {
                 <div className={contentState === 3 ? "content active-content" : "content"}>
                     <h1>Orders</h1>
                     <hr />
-                    <Orders />
+                    {/* <Orders /> */}
                 </div>
             </div>
         </div>
