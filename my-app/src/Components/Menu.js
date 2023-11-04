@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import menuItems from "../Assets/MenuAssets.ts";
 import { useAuth } from "./AuthContex.js";
+import burgerMods from "../Assets/BurgerModAssets.ts";
+import friesMods from "../Assets/FriesModAssets.ts";
+import drinkMods from "../Assets/DrinkModAssets.ts";
 
 function Menu() {
     const [showItemModal, setShowItemModal] = useState(false);
     const [menuItem, setMenuItem] = useState(0);
+    const [selectedMods, setSelectedMods] = useState([]);
     const { isLoggedIn, order, setOrder } = useAuth();
 
     const handleShowItemModal = (num) => () => {
@@ -21,6 +25,17 @@ function Menu() {
         setShowItemModal(false);
     };
 
+    const handleModSelection = (e, modification) => {
+        const selectedModification = modification.name;
+        if (e.target.checked) {
+            // If the checkbox is checked, add the selected modification to the state
+            setSelectedMods([...selectedMods, selectedModification]);
+        } else {
+            // If the checkbox is unchecked, remove the selected modification from the state
+            setSelectedMods(selectedMods.filter(mod => mod !== selectedModification));
+        }
+    };
+
     // useEffect to log order when it changes
     useEffect(() => {
         console.log(order);
@@ -29,10 +44,17 @@ function Menu() {
     const handleAddToBag = (item, order, setOrder) => {
         setShowItemModal(false);
 
+        const selectedModificationForItem = [...selectedMods];
+
+        const updatedItem = {
+            ...item,
+            mod: selectedModificationForItem,
+        };
+
         const updatedOrder = {
             ...order,
             total: (parseFloat(order.total) + parseFloat(item.price)).toFixed(2),
-            items: [...order.items, item]
+            items: [...order.items, updatedItem]
         };
 
         setOrder(updatedOrder);
@@ -64,7 +86,48 @@ function Menu() {
                 <Modal.Body>
                     <h5>{menuItems[menuItem].description}</h5>
                     <h3>Modifications</h3>
-                    <p>Coming Soon!</p>
+                    <form>
+                        {(menuItems[menuItem].type === "burger") && burgerMods.map((modification, index) => (
+                            <div key={index}>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value={modification.name}
+                                        onChange={(e) => handleModSelection(e, modification)}
+                                        checked={selectedMods.includes(modification.name)}
+                                    />
+                                    {modification.name} (+${modification.priceAdjustment})
+                                </label>
+                            </div>
+                        ))}
+
+                        {(menuItems[menuItem].type === "fries") && friesMods.map((modification, index) => (
+                            <div key={index}>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value={modification.name}
+                                        onChange={(e) => handleModSelection(e, modification)}
+                                        checked={selectedMods.includes(modification.name)}
+                                    />
+                                    {modification.name} (+${modification.priceAdjustment})
+                                </label>
+                            </div>
+                        ))}
+                        {(menuItems[menuItem].type === "drink") && drinkMods.map((modification, index) => (
+                            <div key={index}>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value={modification.name}
+                                        onChange={(e) => handleModSelection(e, modification)}
+                                        checked={selectedMods.includes(modification.name)}
+                                    />
+                                    {modification.name} (+${modification.priceAdjustment})
+                                </label>
+                            </div>
+                        ))}
+                    </form>
                 </Modal.Body>
                 <Modal.Footer>
                     <button onClick={() => handleAddToBag(menuItems[menuItem], order, setOrder)}>Add To Bag</button>
