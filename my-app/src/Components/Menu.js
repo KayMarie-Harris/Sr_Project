@@ -12,6 +12,11 @@ function Menu() {
     const [selectedMods, setSelectedMods] = useState([]);
     const { isLoggedIn, order, setOrder } = useAuth();
 
+    useEffect(() => {
+        // Reset selectedMods to an empty array
+        setSelectedMods([]);
+    }, []);
+
     const handleShowItemModal = (num) => () => {
         if (!isLoggedIn) {
             window.alert("Login to start an order!")
@@ -23,16 +28,16 @@ function Menu() {
 
     const handleHideItemModal = () => {
         setShowItemModal(false);
+        setSelectedMods([]);
     };
 
     const handleModSelection = (e, modification) => {
-        const selectedModification = modification.name;
         if (e.target.checked) {
             // If the checkbox is checked, add the selected modification to the state
-            setSelectedMods([...selectedMods, selectedModification]);
+            setSelectedMods([...selectedMods, modification]);
         } else {
             // If the checkbox is unchecked, remove the selected modification from the state
-            setSelectedMods(selectedMods.filter(mod => mod !== selectedModification));
+            setSelectedMods(selectedMods.filter(mod => mod.name !== modification.name));
         }
     };
 
@@ -45,6 +50,8 @@ function Menu() {
         setShowItemModal(false);
 
         const selectedModificationForItem = [...selectedMods];
+        const selectedModificationPrices = selectedMods.map(modification => modification.priceAdjustment);
+        const totalModPrice = selectedModificationPrices.reduce((acc, price) => acc + price, 0);
 
         const updatedItem = {
             ...item,
@@ -53,11 +60,12 @@ function Menu() {
 
         const updatedOrder = {
             ...order,
-            total: (parseFloat(order.total) + parseFloat(item.price)).toFixed(2),
+            total: (parseFloat(order.total) + parseFloat(item.price) + totalModPrice).toFixed(2),
             items: [...order.items, updatedItem]
         };
 
         setOrder(updatedOrder);
+        setSelectedMods([]);
     };
 
     return (
@@ -94,7 +102,7 @@ function Menu() {
                                         type="checkbox"
                                         value={modification.name}
                                         onChange={(e) => handleModSelection(e, modification)}
-                                        checked={selectedMods.includes(modification.name)}
+                                        checked={selectedMods.some(mod => mod.name === modification.name)}
                                     />
                                     {modification.name} (+${modification.priceAdjustment})
                                 </label>
@@ -108,7 +116,7 @@ function Menu() {
                                         type="checkbox"
                                         value={modification.name}
                                         onChange={(e) => handleModSelection(e, modification)}
-                                        checked={selectedMods.includes(modification.name)}
+                                        checked={selectedMods.some(mod => mod.name === modification.name)}
                                     />
                                     {modification.name} (+${modification.priceAdjustment})
                                 </label>
@@ -121,7 +129,7 @@ function Menu() {
                                         type="checkbox"
                                         value={modification.name}
                                         onChange={(e) => handleModSelection(e, modification)}
-                                        checked={selectedMods.includes(modification.name)}
+                                        checked={selectedMods.some(mod => mod.name === modification.name)}
                                     />
                                     {modification.name} (+${modification.priceAdjustment})
                                 </label>

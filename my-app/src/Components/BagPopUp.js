@@ -49,11 +49,20 @@ function ShowBag() {
                     <h1>My Bag</h1>
                 </div>
                 <ul>
-                    {order.items.map(item =>
-                        <li>
+                    {order.items.map(item => (
+                        <li key={item.name}>
                             {item.name} - ${(item.price).toFixed(2)}
+                            {item.mod.length > 0 && (
+                                <ul>
+                                    {item.mod.map(modification => (
+                                        <li key={modification.name}>
+                                            {modification.name} +${modification.priceAdjustment.toFixed(2)}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
                         </li>
-                    )}
+                    ))}
                 </ul>
                 <div className="bag-footer">
                     <ul>
