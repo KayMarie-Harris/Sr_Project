@@ -417,3 +417,50 @@ input {
 .bag-container ul {
   list-style: none;
 }
+.order-list {
+  list-style-type: none;
+  margin: 20px;
+  background-color: #626cf5; /* Light pink background */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle box shadow */
+}
+
+.order-header {
+  font-size: 24px;
+  color: #f1f1f1; /* Pink text color */
+  margin-bottom: 10px;
+  text-align: center; /* Center the header text */
+}
+
+.error-message {
+  color: #FF6B6B; /* Red text color for error message */
+  font-weight: bold;
+  text-align: center;
+}
+
+.order {
+  background-color: #FFFFFF; /* White background for each order */
+  border-radius: 10px;
+  margin: 20px 0;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+}
+
+.order-details {
+  margin-bottom: 10px;
+}
+
+.item-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.item {
+  background-color: #f1c461; /* Light orange background for each item */
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  
+}

@@ -7,7 +7,7 @@ import { useAuth } from "./AuthContex";
 function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
-    const { isLoggedIn, setIsLoggedIn, userName, setUserName, email, setEmail } = useAuth();
+    const { isLoggedIn, setIsLoggedIn, userName, setUserName, email, setEmail , setOrder} = useAuth();
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [successMsg, setSuccessMsg] = useState('');
@@ -82,6 +82,7 @@ function ShowPopUp() {
                 },
             });
 
+
             if (response.ok) {
                 console.log("User logged out");
                 setIsLoggedIn(false);
@@ -91,6 +92,12 @@ function ShowPopUp() {
                 localStorage.setItem('auth', false);
                 localStorage.setItem('userName', '');
                 localStorage.setItem('email', '');
+                setOrder({
+                    email: "",
+                    total: 0,
+                    status: "pending",
+                    items: [],
+                });
             }
             else {
                 console.log("error signing out");
@@ -114,6 +121,7 @@ function ShowPopUp() {
                 },
                 body: JSON.stringify({ userName, address, email, phoneNumber, password }),
             });
+
 
             if (response.ok) {
                 setSuccessMsg(`User Registered! Welcome`);

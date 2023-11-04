@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [order, setOrder] = useState({
-        email: email,
+        email: "",
         total: 0,
         status: "pending",
         items: [],
@@ -20,9 +20,9 @@ export const AuthProvider = ({ children }) => {
 
             const savedEmail = localStorage.getItem('email');
             setEmail(savedEmail);
-
+            console.log(savedEmail);
             const savedUserName = localStorage.getItem('userName');
-            setUserName(userName);
+            setUserName(savedUserName);
 
             setOrder(prevOrder => ({
                 ...prevOrder,
