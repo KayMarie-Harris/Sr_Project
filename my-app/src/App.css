@@ -293,7 +293,8 @@ input {
 }
 
 .bag-footer {
-  margin-top: auto; /* Push the .bag-footer to the bottom of the .bag element */
+  margin-top: auto;
+  /* Push the .bag-footer to the bottom of the .bag element */
   /* Additional styles for .bag-footer if needed */
 }
 
@@ -326,7 +327,7 @@ input {
   font-size: 20px;
 }
 
-.btn-container{
+.btn-container {
   text-align: center;
 }
 
@@ -377,12 +378,12 @@ input {
 .Burgers,
 .Sides,
 .Drinks {
-  flex-basis: 30%; 
-  padding: 20px; 
-  text-align: center; 
+  flex-basis: 30%;
+  padding: 20px;
+  text-align: center;
 }
 
-.item-btn img{
+.item-btn img {
   height: 250px;
   border-style: solid;
   border-color: black;
@@ -417,34 +418,42 @@ input {
 .bag-container ul {
   list-style: none;
 }
+
 .order-list {
   list-style-type: none;
   margin: 20px;
-  background-color: #626cf5; /* Light pink background */
+  background-color: #626cf5;
+  /* Light pink background */
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle box shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Subtle box shadow */
 }
 
 .order-header {
   font-size: 24px;
-  color: #f1f1f1; /* Pink text color */
+  color: #f1f1f1;
+  /* Pink text color */
   margin-bottom: 10px;
-  text-align: center; /* Center the header text */
+  text-align: center;
+  /* Center the header text */
 }
 
 .error-message {
-  color: #FF6B6B; /* Red text color for error message */
+  color: #FF6B6B;
+  /* Red text color for error message */
   font-weight: bold;
   text-align: center;
 }
 
 .order {
-  background-color: #FFFFFF; /* White background for each order */
+  background-color: #FFFFFF;
+  /* White background for each order */
   border-radius: 10px;
   margin: 20px 0;
   padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle box shadow */
 }
 
 .order-details {
@@ -457,10 +466,61 @@ input {
 }
 
 .item {
-  background-color: #f1c461; /* Light orange background for each item */
+  background-color: #f1c461;
+  /* Light orange background for each item */
   border-radius: 10px;
   margin: 10px 0;
   padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
-  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle box shadow */
+
+}
+
+.payment-popup-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent black background */
+  z-index: 1;
+}
+
+.payment-popup {
+  background: #fff;
+  /* White background for the popup */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.payment-popup form {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-popup label,
+.payment-popup input,
+.payment-popup button {
+  margin: 10px 0;
+}
+
+.payment-popup button {
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.payment-popup button:first-child {
+  background-color: #f44336;
+  /* Red color for Cancel button */
 }
