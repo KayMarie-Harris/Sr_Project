@@ -7,7 +7,7 @@ import { useAuth } from "./AuthContex";
 function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
-    const { isLoggedIn, setIsLoggedIn, userName, setUserName, email, setEmail , setOrder} = useAuth();
+    const { isLoggedIn, setIsLoggedIn, userName, setUserName, email, setEmail, setOrder } = useAuth();
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [successMsg, setSuccessMsg] = useState('');
@@ -46,6 +46,12 @@ function ShowPopUp() {
                     // Set email
                     setEmail(responseObj.user.email)
                     localStorage.setItem("email", responseObj.user.email)
+
+                    // Update order obj
+                    setOrder(prevOrder => ({
+                        ...prevOrder,
+                        email: responseObj.user.email,
+                    }));
 
                 }).catch((error) => {
                     console.error("Couldn't parse: ", error)

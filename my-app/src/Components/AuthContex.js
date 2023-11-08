@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const auth = localStorage.getItem('auth');
-        if (auth) {
+        if (auth === "true") {
             setIsLoggedIn(true);
 
             const savedEmail = localStorage.getItem('email');
