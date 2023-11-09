@@ -1,6 +1,6 @@
 import Modification from "../Types/Mod";
 
-const friesMods: Modification[] = [
+const sideMods: Modification[] = [
     {
         "name": "Extra Salt",
         "priceAdjustment": 0
@@ -11,4 +11,4 @@ const friesMods: Modification[] = [
     },
 ];
 
-export default friesMods;
+export default sideMods;
