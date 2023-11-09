@@ -58,6 +58,15 @@ function Orders() {
                                         <div>ID: {item._id}</div>
                                         <div>Item: {item.name}</div>
                                         <div>Price: ${item.price}</div>
+                                        <ul className="mod-list">
+                                            {item.mods.map(mod => (
+                                                <li key={mod._id} className="mod">
+                                                    <div>ID: {mod._id}</div>
+                                                    <div>Name: {mod.name}</div>
+                                                    <div>Price Adjustment: ${mod.priceAdjustment}</div>
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </li>
                                 ))}
                             </ul>
