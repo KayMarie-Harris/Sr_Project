@@ -463,40 +463,44 @@ input {
 }
 
 .order-list {
-  list-style-type: none;
   margin: 20px;
-  background-color: #626cf5;
-  /* Light pink background */
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  /* Subtle box shadow */
+}
+
+.order-list ul {
+  list-style: none;
 }
 
 .order-header {
+  display: flex;
   font-size: 24px;
-  color: #f1f1f1;
-  /* Pink text color */
+  color: #FFFFFF;
   margin-bottom: 10px;
-  text-align: center;
-  /* Center the header text */
+  text-align: left;
 }
 
 .error-message {
-  color: #FF6B6B;
-  /* Red text color for error message */
+  color: white;
+  background-color: red;
   font-weight: bold;
   text-align: center;
+  border-radius: 10px;
+  margin: 20px 0;
 }
 
 .order {
-  background-color: #FFFFFF;
-  /* White background for each order */
+  background-color: #005fe4;
   border-radius: 10px;
   margin: 20px 0;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Subtle box shadow */
+}
+
+.order:hover {
+  background-color: #3383f3;
+  border-radius: 10px;
+  margin: 20px 0;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .order-details {
@@ -504,20 +508,33 @@ input {
 }
 
 .item-list {
-  list-style-type: none;
   padding: 0;
-}
-
-.item {
-  background-color: #f1c461;
-  /* Light orange background for each item */
+  background-color: #ffae00;
   border-radius: 10px;
   margin: 10px 0;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Subtle box shadow */
-
+  font-weight: bold;
 }
+
+.item-list ul {
+  list-style-type: disc;
+}
+
+.markComplete {
+  background-color: #ffae00;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.markComplete:hover {
+  background-color: #ffc852;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-left: auto;
+}
+
 
 .payment-popup-background {
   display: flex;
@@ -565,5 +582,4 @@ input {
 
 .payment-popup button:first-child {
   background-color: #f44336;
-  /* Red color for Cancel button */
 }

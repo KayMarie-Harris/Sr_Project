@@ -33,8 +33,18 @@ function Tabs() {
                     {!isLoggedIn && (<>
                         <p1>Welcome Fellow Cheeseburger Lovers!</p1>
                         <br />
-                        <p2>
+                        <p1>
                             Please register and login to place an order for delicious Cheeseburgers. Happy borgering.
+                        </p1>
+
+                        <p2>
+                            Welcome to 'I Love Cheeseburgers,' where we transform your love for cheeseburgers into a delightful online dining experience. Our platform is not just a food ordering website; it's a celebration of the irresistible combination of juicy patties, melted cheese, and delectable toppings. We understand the profound joy that a perfectly crafted cheeseburger brings, and we're here to make that joy easily accessible to you.
+                        </p2>
+                        <p2>
+                            At 'I Love Cheeseburgers,' we've curated a diverse menu of mouthwatering cheeseburgers, from classic favorites to inventive creations that push the boundaries of flavor. Our commitment is to deliver a seamless and convenient food ordering process, ensuring that your cheeseburger cravings are satisfied with just a few clicks.
+                        </p2>
+                        <p2>
+                            Why choose us? Because we're not just delivering meals; we're delivering an experience. With a user-friendly interface, swift delivery, and a dedication to quality, we aim to redefine your expectations of online food ordering. Join us on this culinary journey, where every cheeseburger is a celebration, and every bite is a testament to our shared love for this iconic dish. 'I Love Cheeseburgers' – where passion meets convenience, and every order is an ode to the timeless joy of savoring a cheeseburger.
                         </p2>
                         <br />
                         <div className="btn-container">
@@ -43,21 +53,21 @@ function Tabs() {
                     </>)}
                     {isLoggedIn && (
                         <>
-                            <p>Welcome, {userName}!</p>
+                            <p1>Welcome, {userName}!</p1>
                             <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                                est laborum.
-                            </p>
+                            <p2>
+                                Welcome to 'I Love Cheeseburgers,' where we transform your love for cheeseburgers into a delightful online dining experience. Our platform is not just a food ordering website; it's a celebration of the irresistible combination of juicy patties, melted cheese, and delectable toppings. We understand the profound joy that a perfectly crafted cheeseburger brings, and we're here to make that joy easily accessible to you.
+                            </p2>
+                            <p2>
+                                At 'I Love Cheeseburgers,' we've curated a diverse menu of mouthwatering cheeseburgers, from classic favorites to inventive creations that push the boundaries of flavor. Our commitment is to deliver a seamless and convenient food ordering process, ensuring that your cheeseburger cravings are satisfied with just a few clicks.
+                            </p2>
+                            <p2>
+                                Why choose us? Because we're not just delivering meals; we're delivering an experience. With a user-friendly interface, swift delivery, and a dedication to quality, we aim to redefine your expectations of online food ordering. Join us on this culinary journey, where every cheeseburger is a celebration, and every bite is a testament to our shared love for this iconic dish. 'I Love Cheeseburgers' – where passion meets convenience, and every order is an ode to the timeless joy of savoring a cheeseburger.
+                            </p2>
                             <br />
                             <div className="btn-container">
                                 <button className="home-btn" onClick={() => toggleTab(2)}>Menu</button>
-                                <button className="home-btn" onClick={() => toggleTab(3)}>My Orders</button>
+                                <button className="home-btn" onClick={() => toggleTab(3)}>Orders</button>
                             </div>
                         </>
                     )}
@@ -72,8 +82,7 @@ function Tabs() {
                 </div>
 
                 <div className={contentState === 3 ? "content active-content" : "content"}>
-                    <h1>Orders</h1>
-                    <hr />
+                    <img className="img-header" src="Orders.png" alt="Orders"></img>
                     {contentState === 3 && <Orders />}
                 </div>
             </div>
