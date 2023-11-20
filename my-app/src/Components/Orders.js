@@ -77,7 +77,7 @@ function Orders() {
                                 <div><p1>Order ID: {order._id}</p1></div>
                                 <div><p1>Total: ${order.total}</p1></div>
                                 <div><p1>Status: {order.status}</p1></div>
-                                {order.status !== 'Complete' && (
+                                {order.status !== 'Completed' && (
                                     <button className='markComplete' onClick={() => handleConfirmPickup(order._id)}>Confirm Pickup</button>
                                 )}
                             </div>
