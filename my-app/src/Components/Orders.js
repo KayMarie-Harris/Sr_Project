@@ -37,7 +37,7 @@ function Orders() {
 
     const handleConfirmPickup = async (orderId) => {
         try {
-            const response = await fetch('http://157.245.213.41:5000/status', {
+            const response = await fetch('http://157.245.213.41:5000/pickUpOrder', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
