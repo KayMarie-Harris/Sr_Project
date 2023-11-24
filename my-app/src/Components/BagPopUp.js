@@ -2,53 +2,35 @@ import React, { useState } from "react";
 import { useAuth } from "./AuthContex";
 import { PaymentForm, CreditCard } from 'react-square-web-payments-sdk';
 
-// Assuming you have set up your environment variables correctly
 function ShowBag() {
     const [showBag, setShowBag] = useState(false);
     const [showPayment, setShowPayment] = useState(false);
     const { order, setOrder, email } = useAuth();
 
-
-
-    // Handler functions
-    const MyPaymentForm = () => (
-        <PaymentForm
-            applicationId="{process.env.applicationId}"
-            locationId="${process.env.locationId}"
-            cardTokenizeResponseReceived={(token, buyer) => {
-                // Handle the tokenized card information here
-            }}
-            // Add verification details if necessary
-        >
-            <CreditCard />
-        </PaymentForm>
-    );
-
-    const handlePlaceOrder = async (e) => {
-        e.preventDefault();
-
+    const handlePlaceOrder = async (token) => {
+        // Call your backend with the token and order total to process payment
         try {
-            const result = await tokenize();
-            if (result.status === 'OK') {
-                // Sending order to backend along with payment token
-                const response = await fetch("YOUR_BACKEND_ENDPOINT", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ ...order, token: result.token })
-                });
+            const response = await fetch("http://157.245.213.41:5000/processPayment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    token: token.token,
+                    orderTotal: order.total // Include order total here
+                })
+            });
 
-                if (response.ok) {
-                    // Handle successful order placement
-                } else {
-                    // Handle errors
-                }
+            if (response.ok) {
+                // Handle successful order placement
+                setOrder({ ... }); // Reset or update the order as needed
+                setShowPayment(false);
             } else {
-                // Handle payment tokenization failure
+                // Handle errors from your backend
             }
         } catch (error) {
             // Handle any other errors
+            console.error("Payment processing error:", error);
         }
     };
 
@@ -57,10 +39,14 @@ function ShowBag() {
             {showPayment && (
                 <div className="payment-popup-background">
                     <div className="payment-popup">
-                        <h3>Total Due: {/*...*/}</h3>
-                        <PaymentForm applicationId="YOUR_SQUARE_APPLICATION_ID" locationId="YOUR_SQUARE_LOCATION_ID">
+                        <h3>Total Due: {order.total.toFixed(2)}</h3>
+                        <PaymentForm
+                            applicationId={process.env.applicationId}
+                            locationId={process.env.locationId}
+                            cardTokenizeResponseReceived={handlePlaceOrder}
+                        >
                             <CreditCard />
-                            <button type="button" onClick={/*...*/}>Cancel</button>
+                            <button type="button" onClick={() => setShowPayment(false)}>Cancel</button>
                             <button type="submit">Submit Payment</button>
                         </PaymentForm>
                     </div>
@@ -68,7 +54,6 @@ function ShowBag() {
             )}
         </>
     );
-
 }
 
 export default ShowBag;
