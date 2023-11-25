@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../App.css";
-import { useAuth } from "./AuthContex";
+import { useAuth } from "./AuthContext";
 import Menu from "./Menu";
 import Orders from "./Orders";
 

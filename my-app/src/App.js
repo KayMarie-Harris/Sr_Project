@@ -1,5 +1,5 @@
 import './App.css';
-import { AuthProvider } from './Components/AuthContex';
+import { AuthProvider } from './Components/AuthContext';
 import Header from './Components/Header';
 import Tabs from './Components/Tabs';
 

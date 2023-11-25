@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from './AuthContex'; // Adjust the import path according to your project structure
+import { useAuth } from './AuthContext'; // Adjust the import path according to your project structure
 
 function Orders() {
     const { email } = useAuth();
@@ -9,7 +9,7 @@ function Orders() {
 
     const getOrders = async () => {
         try {
-            const response = await fetch('http://157.245.213.41:5000/getAllOrders', {
+            const response = await fetch('https://157.245.213.41:5000/getAllOrders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ function Orders() {
 
     const handleConfirmPickup = async (orderId) => {
         try {
-            const response = await fetch('http://157.245.213.41:5000/pickUpOrder', {
+            const response = await fetch('https://157.245.213.41:5000/pickUpOrder', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import menuItems from "../Assets/MenuAssets.ts";
-import { useAuth } from "./AuthContex.js";
+import { useAuth } from "./AuthContext.js";
 import burgerMods from "../Assets/BurgerModAssets.ts";
 import sideMods from "../Assets/SideModAssets.ts";
 import drinkMods from "../Assets/DrinkModAssets.ts";

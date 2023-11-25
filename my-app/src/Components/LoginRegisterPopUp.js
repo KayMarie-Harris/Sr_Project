@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Banner from "./Banner";
-import { useAuth } from "./AuthContex";
+import { useAuth } from "./AuthContext";
 
 function ShowPopUp() {
     const [showLogin, setShowLogin] = useState(false);
@@ -22,7 +22,7 @@ function ShowPopUp() {
             return;
         }
         try {
-            const response = await fetch('http://157.245.213.41:5000/login', {
+            const response = await fetch('https://157.245.213.41:5000/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ function ShowPopUp() {
     }
     const handleLogout = async () => {
         try {
-            const response = await fetch('http://157.245.213.41:5000/logout', {
+            const response = await fetch('https://157.245.213.41:5000/logout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -120,7 +120,7 @@ function ShowPopUp() {
         }
         try {
             console.log("Try Register")
-            const response = await fetch('http://157.245.213.41:5000/register', {
+            const response = await fetch('https://157.245.213.41:5000/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

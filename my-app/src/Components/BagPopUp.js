@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useAuth } from "./AuthContex";
+import { useAuth } from "./AuthContext";
 
 function ShowBag() {
 
@@ -43,7 +43,7 @@ function ShowBag() {
 
         if (cardNumber && cardHolderName && expiryDate && cvv) {
             try {
-                const response = await fetch("http://157.245.213.41:5000/order", {
+                const response = await fetch("https://157.245.213.41:5000/order", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
