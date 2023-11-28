@@ -58,15 +58,20 @@ function Menu() {
             mod: selectedModificationForItem,
         };
 
+        // Calculate the total with tax
+        const subTotal = parseFloat(order.total) + parseFloat(item.price) + totalModPrice;
+        const totalWithTax = subTotal * 1.08; // 8% tax
+
         const updatedOrder = {
             ...order,
-            total: (parseFloat(order.total) + parseFloat(item.price) + totalModPrice).toFixed(2),
+            total: totalWithTax.toFixed(2), // Round to 2 decimal places for human readability
             items: [...order.items, updatedItem]
         };
 
         setOrder(updatedOrder);
         setSelectedMods([]);
     };
+
 
     return (
         <>

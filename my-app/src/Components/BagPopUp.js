@@ -1,19 +1,22 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import { useAuth } from "./AuthContext";
+import StripeCheckout from 'react-stripe-checkout';
 
 function ShowBag() {
-
     const [showBag, setShowBag] = useState(false);
     const { order, setOrder, email } = useAuth();
 
-
     const handleShowBag = () => {
-        setShowBag(true)
-    }
+        setShowBag(true);
+    };
 
     const handleHideBag = () => {
-        setShowBag(false)
-    }
+        setShowBag(false);
+    };
+    const stripeAmount = Math.round(order.total * 100);
+
+
+    const stripePublishableKey = "pk_test_51OGGbhAd5Clit93lSELrRvEZkWwuG3qf01Loy2ibl9BJ9O4PzDM5Kf9NpizhNJ2i0DHM7LrNuwA4jl7qvPiXoBl300b6GetBeq";
 
     const onToken = async (token) => {
         try {
