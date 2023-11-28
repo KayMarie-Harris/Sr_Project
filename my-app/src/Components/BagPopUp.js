@@ -87,8 +87,9 @@ function ShowBag() {
                     </ul>
                     <div className="bag-footer">
                         <ul>
+                            <li>Cart Price: ${(parseFloat(order.total) / 1.08).toFixed(2)}</li>
+                            <li>Tax: ${(parseFloat(order.total) - parseFloat(order.total) / 1.08).toFixed(2)}</li>
                             <li>Total: ${parseFloat(order.total).toFixed(2)}</li>
-                            <li>Tax: ${(order.total * 0.08).toFixed(2)}</li>
                         </ul>
                         <StripeCheckout
                             token={onToken}
