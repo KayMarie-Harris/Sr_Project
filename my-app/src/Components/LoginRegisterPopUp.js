@@ -114,10 +114,36 @@ function ShowPopUp() {
     };
 
     const handleRegister = async () => {
-        if (confirmPassword !== password) {
-            setErrMsg("Passwords do not match");
+        // Basic Validation: Check if all fields are filled
+        if (!userName || !address || !email || !phoneNumber || !password || !confirmPassword) {
+            setErrMsg("All fields are required.");
             return;
         }
+
+        // Email Validation
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        if (!emailRegex.test(email)) {
+            setErrMsg("Invalid email format.");
+            return;
+        }
+
+        // Password Validation
+        if (password.length < 6) {
+            setErrMsg("Password must be at least 6 characters long.");
+            return;
+        }
+        if (password !== confirmPassword) {
+            setErrMsg("Passwords do not match.");
+            return;
+        }
+
+        // Phone Number Validation (Optional)
+        // const phoneRegex = /^[0-9]{10}$/; // Basic US phone number format
+        // if (!phoneRegex.test(phoneNumber)) {
+        //     setErrMsg("Invalid phone number.");
+        //     return;
+        // }
+
         try {
             console.log("Try Register")
             const response = await fetch('https://157.245.213.41:5000/register', {
@@ -128,7 +154,6 @@ function ShowPopUp() {
                 body: JSON.stringify({ userName, address, email, phoneNumber, password }),
             });
 
-
             if (response.ok) {
                 setSuccessMsg(`User Registered! Welcome`);
                 setErrMsg('')
@@ -136,12 +161,7 @@ function ShowPopUp() {
             }
             else {
                 setIsLoggedIn(false);
-                if (userName === '' || address === '' || email === '' || phoneNumber === '' || password === '' || confirmPassword === '') {
-                    setErrMsg("All fields are required")
-                }
-                else {
-                    setErrMsg("Registration failed")
-                }
+                setErrMsg("Registration failed")
                 setSuccessMsg('')
                 console.log(errMsg);
             }
@@ -150,6 +170,7 @@ function ShowPopUp() {
             console.log("Err during Registration:", error);
         }
     };
+
     const handleCloseRegister = () => {
         setShowRegister(false);
         setErrMsg('');
